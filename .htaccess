@@ -1,0 +1,21 @@
+
+<IfModule mod_rewrite.c>
+# URLS AMIGABLES
+#ACTIVAR:
+
+RewriteEngine on
+ErrorDocument 404 http://localhost/Tienda/error/
+
+# Comprobar que no sea un directorio ni un fichero:
+RewriteCond %(SCRIPT_FILENAME) !-d
+RewriteCond %(SCRIPT_FILENAME) !-f
+# Excluir la reescritura de archivos estáticos:
+RewriteCond %{REQUEST_URI} !\.(?:css|js|jpe?g|gif|png)$ [NC]
+
+
+# Regla de reescritura
+          # Valor 1, valor 2
+RewriteRule ^(.*)/(.*) index.php?controller=$1&action=$2
+
+
+</IfModule> 
